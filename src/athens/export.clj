@@ -3,6 +3,7 @@
   This takes an Athens database and attempts to dump it as a tree of Markdown
   files, named and formatted in the way that logseq expects."
   (:require
+    [clojure.data.json :as json]
     [clojure.java.io :as io]
     [clojure.string :as string]
     [datascript.core :as ds]
@@ -130,7 +131,9 @@
 
   ; Write all the journal files.
   (let [base-db    (-> (FileInputStream. athens)
-                       (dt/read-transit))
+                       slurp
+                       json/read-str
+                       ds/from-serializable)
         conn       (atom base-db)
         block-refs (extract-block-refs base-db)
         ; Side effect: update all the referenced blocks to have a UUID attached.
@@ -166,4 +169,3 @@
 
 (defn -main [athens-db logseq-dir & _]
   (export {:athens athens-db :logseq logseq-dir}))
-

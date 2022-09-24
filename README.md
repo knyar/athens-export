@@ -1,7 +1,7 @@
 # Athens exporter
 
 Standalone tool that converts an
-[Athens Research](https://github.com/athensresearch/athens) database into a
+[Athens Research](https://github.com/athensresearch/athens) database JSON dump into a
 [logseq](https://github.com/logseq/logseq) directory.
 
 ## Usage
@@ -11,7 +11,7 @@ JAR](https://github.com/shepheb/athens-export/releases), and run it with
 
 ```
 $ wget https://github.com/bshepherdson/athens-export/releases/latest/download/athens-export.jar
-$ java -jar athens-export.jar path/to/athens/index.transit logseq/parent/dir
+$ java -jar athens-export.jar path/to/athens/persist/file.json logseq/parent/dir
 ```
 
 To run from source: install the Clojure CLI tool,
@@ -20,7 +20,7 @@ clone this repo and `cd` into it. Then:
 
 ```
 $ clj -X athens.export/export \
-  :athens '"path/to/athens/index.transit"' \
+  :athens '"path/to/athens/persist/file.json"' \
   :logseq '"path/to/empty/logseq/dir"'
 ```
 
@@ -56,4 +56,3 @@ There are several known weaknesses of this tool.
 - there may be more file name special characters I don't know about
 
 PRs to fix any of these issues would be welcome!
-

@@ -1,5 +1,6 @@
 {:paths ["src"]
  :deps  {com.cognitect/transit-clj {:mvn/version "1.0.324"}
+         org.clojure/data.json {:mvn/version "2.4.0"}
          datascript/datascript {:mvn/version "1.2.2"}
          datascript-transit/datascript-transit {:mvn/version "0.3.0"}}
 
